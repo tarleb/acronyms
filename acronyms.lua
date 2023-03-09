@@ -83,7 +83,7 @@ end
 -- Format specific overrides
 if FORMAT:match 'latex' then
   fill_acronyms_div = function (div)
-    div.insert(pandoc.RawBlock('latex', [[\printacronyms]]))
+    div.content:insert(pandoc.RawBlock('latex', [[\printacronyms]]))
     return div
   end
   render_acronym = function (id, acro, uppercase)
@@ -152,6 +152,7 @@ local function replace_acronym (id)
     )
     acro = acronyms[lcid]
     uppercase = true
+    id = lcid
     if not acro then
       return nil
     end
