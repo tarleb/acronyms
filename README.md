@@ -44,6 +44,19 @@ Capitalize the acronym ID to uppercase the first letter of the
 replacement text: `[Amphetamine]{.acro}` will produce
 `Alpha-methylphenethylamine`.
 
+### Placing the list of acronyms
+
+The list of acronyms will be placed in the div with id
+`acronym-defs` if any such div is part of the document.
+
+``` Markdown
+## Acronyms
+
+The following acronyms are used in this thesis:
+
+::: {#acronym-defs}
+:::
+```
 
 ## Setup
 

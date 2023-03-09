@@ -28,10 +28,6 @@ local function normalize_acronyms (acronyms)
   return result
 end
 
---
--- Format specific rendering of acronyms
---
-
 --- Returns a generic Span for the given acronym.
 local function render_acronym_span (id, acro, uppercase)
   local contents = acro.seen and acro.short or acro.long
@@ -50,6 +46,10 @@ local function render_acronym_span (id, acro, uppercase)
   }
 end
 
+--
+-- Format specific rendering of acronyms
+--
+
 --- Returns generic `Inlines` output for the given acronym.
 --
 -- Note that this function is overwritten for certain output formats.
@@ -66,7 +66,26 @@ local acronyms_header = function (acronyms)
   return nil
 end
 
+-- Div filter function which fills any Div with id `acronym-defs` with
+-- definitions for the various acronyms.
+local fill_acronyms_div = function (div)
+  local defitems = pandoc.List{}
+  for id, properties in pairs(acronyms) do
+    if properties.seen then
+      defitems:insert({properties.short, {pandoc.Plain(properties.long)}})
+    end
+  end
+
+  div.content:insert(pandoc.DefinitionList(defitems))
+  return div
+end
+
+-- Format specific overrides
 if FORMAT:match 'latex' then
+  fill_acronyms_div = function (div)
+    div.insert(pandoc.RawBlock('latex', [[\printacronyms]]))
+    return div
+  end
   render_acronym = function (id, acro, uppercase)
     if uppercase then
       return pandoc.RawInline('latex', ('\\Ac{%s}'):format(id))
@@ -185,6 +204,14 @@ function Pandoc (doc)
     doc.meta['header-includes'] or pandoc.List{},
     acronyms_header(acronyms)
   )
+  doc = doc:walk {
+    Div = function (div)
+      if div.identifier ~= 'acronym-defs' then
+        return nil
+      end
+      return fill_acronyms_div(div)
+    end
+  }
   return doc
 end
 

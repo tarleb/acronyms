@@ -15,3 +15,8 @@ It's also possible to use spans for acronyms, e.g., [css]{.acro}.
 
 Capitalize the acronym ID to uppercase the first letter of the
 replacement text: [[Amphetamine]].
+
+## Acronyms
+
+::: {#acronym-defs}
+:::
