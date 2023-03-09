@@ -32,6 +32,19 @@ span with class `acro`:
 Webpages are styled with [css]{.acro}
 ```
 
+Pandoc 3.0 and later added support for wikilinks in Markdown;
+enabling the respective extension allows to use wikilink syntax
+for acronyms.
+
+``` markdown
+This page uses [[html]] and [[css]].
+```
+
+Capitalize the acronym ID to uppercase the first letter of the
+replacement text: `[Amphetamine]{.acro}` will produce
+`Alpha-methylphenethylamine`.
+
+
 ## Setup
 
 The filter modifies the internal document representation; it can
