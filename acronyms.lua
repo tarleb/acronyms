@@ -30,7 +30,13 @@ end
 
 --- Returns a generic Span for the given acronym.
 local function render_acronym_span (id, acro, uppercase)
-  local contents = acro.seen and acro.short or acro.long
+  local contents = acro.short
+  if not acro.seen then
+    contents = acro.long ..
+      {pandoc.Space(), pandoc.Str "("} ..
+      acro.short ..
+      {pandoc.Str ")"}
+  end
   return pandoc.Span(contents, {acronym=id}):walk{
     Str = function (str)
       if uppercase then
