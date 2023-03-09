@@ -11,6 +11,29 @@ See `sample.md` for an example and usage notes.
 
 ## Usage
 
+Acronyms should be defined in the `acronyms` part of the document
+metadata. E.g.:
+
+``` yaml
+acronyms:
+  html:
+    short: HTML
+    long: Hypertext Markup Language
+  css:
+    short: CSS
+    long: Cascading Style Sheets
+  amphetamine: alpha-methylphenethylamine
+```
+
+The acronyms can then be used by referencing an acronym *id* in a
+span with class `acro`:
+
+``` markdown
+Webpages are styled with [css]{.acro}
+```
+
+## Setup
+
 The filter modifies the internal document representation; it can
 be used with many publishing systems that are based on pandoc.
 
