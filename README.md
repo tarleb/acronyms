@@ -2,8 +2,10 @@
 
 This Lua filter allows to define and use acronyms in a document.
 
-> Note: This is work in progress and some details may still
-> change. Feedback is welcome!
+> **Note**
+>
+> This is work in progress and some details may still change.
+> Feedback is welcome!
 
 See `sample.md` for an example and usage notes.
 
