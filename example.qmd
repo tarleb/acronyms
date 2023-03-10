@@ -16,7 +16,7 @@ acronyms:
     long: Cascading Style Sheets
   amphetamine: alpha-methylphenethylamine
 filters: 
-  - acronyms.lua
+  - acronyms
 ---
 
   This page uses [[html]] and [[css]].
