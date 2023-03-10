@@ -72,15 +72,20 @@ line option.
 
 ### Quarto
 
-The filter must be used as a plain Lua filter; it's not (yet)
-possible to install the filter as an extension. Download the file
-`acronyms.lua` to your project directory and add list it in the
+The filter can be installed as extension. 
+For this, run the following line in your terminal:
+
+```
+quarto install extension tarleb/acronyms
+```
+
+When writing your quarto document, list the extension in the
 `filters` section of the YAML frontmatter.
 
 ``` yaml
 ---
 filters:
-  - acronyms.lua
+  - acronyms
 ---
 ```
 
