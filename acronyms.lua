@@ -141,6 +141,18 @@ elseif FORMAT:match 'html' then
       render_acronym_span(id, acro, uppercase).content ..
       {pandoc.RawInline('html', '</abbr>')}
   end
+
+-- adapt for Word docx
+elseif FORMAT:match 'docx' then
+  render_acronym = function (id, acro, uppercase)
+    if not acro.seen then
+      return pandoc.Inlines{render_acronym_span(id, acro, uppercase)}
+    end
+
+   return {pandoc.Span(
+      render_acronym_span(id, acro, uppercase).content)
+      }
+  end
 end
 
 --
