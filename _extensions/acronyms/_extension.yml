@@ -1,0 +1,6 @@
+name: acronyms
+author: tarleb
+version: 0.0.1
+contributes:
+  filters:
+    - acronyms.lua
