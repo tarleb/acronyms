@@ -102,6 +102,7 @@ if FORMAT:match 'latex' then
   acronyms_header = function (acronyms)
     local tmpl = [[
 \usepackage{acro}
+\acsetup{patch/longtable=false}
 $for(acronyms)$
 \DeclareAcronym{$acronyms.id$}{
   $for(acronyms.properties/pairs)$$it.key$ = $it.value$$sep$,
